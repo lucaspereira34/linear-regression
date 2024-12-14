@@ -1,7 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Tue Dec  3 23:01:07 2024
+# Linear Regression
 
-@author: lucas
-"""
-
+**Linear Regression** is a **supervised learning** technique that uses labeled data to learn the relationship between input features, which are assumed to be linearly related, and a quantitative dependent variable. As a **supervised learning** method, it can be used for predictive purposes.
