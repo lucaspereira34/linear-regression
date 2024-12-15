@@ -4,9 +4,13 @@
 
 ## Simple Linear Regression
 
-Models the relationship between a single explanatory variable (X) and a dependent variable (Y).
+Models the relationship between a single **explanatory variable** (X) and a **dependent variable** (Y).
 
 $$
-Y = \alpha + \beta.X + \epsilon
+Y = \alpha + \beta.X + \mu
 $$
+
+- $\alpha$ is the **intercept**, the starting point of the regression line on the Y-axis when X is zero.
+- $\beta$ is the **slope** coefficient, which represents the steepness and direction of the line.
+- $\mu$ is the **error** term.
 
