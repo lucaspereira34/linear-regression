@@ -1,3 +1,18 @@
+# In[0.1]: Instalação dos pacotes
+
+!pip install pandas
+!pip install numpy
+!pip install -U seaborn
+!pip install matplotlib
+!pip install plotly
+!pip install scipy
+!pip install statsmodels
+!pip install scikit-learn
+!pip install playsound
+!pip install pingouin
+!pip install emojis
+!pip install statstests
+
 #%% Import
 
 import pandas as pd # data wrangling
@@ -30,7 +45,21 @@ df.info()
 # Statistics
 df.describe()
 
-#%% Scatter plot with linear regression
+#%% Basic Scatter plot
+
+plt.figure(figsize=(15,10))
+
+sns.scatterplot(data = df,
+            x = 'distance',
+            y = 'time',
+            size = {'color':'navy', 'alpha':0.9, 's':220})
+
+plt.xlabel('distance', fontsize=28)
+plt.ylabel('time', fontsize=28)
+plt.tick_params(axis='both', labelsize=24)
+plt.show()
+
+#%% Scatter plot with linear regression fit
 
 plt.figure(figsize=(15,10))
 
@@ -41,6 +70,11 @@ sns.regplot(data = df,
             ci = False,
             scatter_kws = {'color':'navy', 'alpha':0.9, 's':220},
             line_kws = {'color':'gray', 'linewidth': 5})
+
+plt.xlabel('distance', fontsize=28)
+plt.ylabel('time', fontsize=28)
+plt.tick_params(axis='both', labelsize=24)
+plt.show()
 
 #%% Interactive scatter plot ('EXAMPLE01.html' figure)
 
