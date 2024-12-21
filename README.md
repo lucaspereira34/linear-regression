@@ -59,11 +59,15 @@ plt.show()
 
 ### Ordinary Least Squares (OLS)
 
-The most common method for estimating the coefficients of a linear regression model is **Ordinary Least Squares (OLS)**. It consists in determining the coefficients $\alpha$ and $\beta$ that minimize the sum of the squared **residuals**, so-called **Residual Sum of Squares (RSS)**:
+The most common method for estimating the coefficients of a linear regression model is **Ordinary Least Squares (OLS)**. It consists in determining the coefficients $\alpha$ and $\beta$ that **minimize** the sum of the squared **residuals**, so-called **Residual Sum of Squares (RSS)**:
 
 $$
 RSS = \sum_{i=1}^{n}(Y_i - \hat{Y}_i)^2
 $$
 
+The mathematical properties of the OLS method are:
+
+- The sum of the residuals equals zero: $\sum_{i=1}^{n}e_i=0$
+- Residual Sum of Squares is minimized: $\min_{\alpha,\beta} \sum_{i=1}^{n}(Y_i - \hat{Y}_i)^2$
 
 
