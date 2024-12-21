@@ -10,9 +10,9 @@ $$
 Y = \alpha + \beta.X + \mu
 $$
 
-- $\alpha$ is the **intercept**, the starting point of the regression line on the Y-axis when X is zero.
-- $\beta$ is the **slope** coefficient, which represents the steepness and direction of the line.
-- $\mu$ is the **error** term.
+- $\alpha$ is the **intercept** coefficient. It is the starting point of the regression line on the Y-axis when X is zero.
+- $\beta$ is the **slope** coefficient. It represents the steepness and direction of the line.
+- $\mu$ is the **residual** term. Also called error, it is the difference between observed values ($Y$) and predicted values ($\hat{Y}$).
 
 ## Example: Time and Distance
 
@@ -22,6 +22,11 @@ Since it has only one explanatory variable (distance), the model is classified a
 
 - Dataset: *time_dist.csv*
 - Python script: *ex01_time_and_distance.py*
+
+~~~python
+# Read dataset
+df = pd.read_csv('time_dist.csv', delimiter=',')
+~~~
 
 ### Scatter Plot and Linear Regression
 
@@ -34,7 +39,6 @@ The scatter plot in **Plot 1** provides a clear visualization of the data distri
 
 ~~~python
 # Plot 1: Basic scatter plot
-
 plt.figure(figsize=(15,10))
 sns.scatterplot(data = df, x = 'distance', y = 'time', color = 'navy', alpha = 0.9, s = 220)
 plt.xlabel('distance', fontsize=28)
@@ -43,7 +47,6 @@ plt.tick_params(axis='both', labelsize=24)
 plt.show()
 
 # Plot 2: Scatter plot with linear regression fit
-
 plt.figure(figsize=(15,10))
 sns.regplot(data = df, x = 'distance', y = 'time', marker = 'o', ci = False,
             scatter_kws = {'color':'navy', 'alpha':0.9, 's':220},
@@ -53,6 +56,14 @@ plt.ylabel('time', fontsize=28)
 plt.tick_params(axis='both', labelsize=24)
 plt.show()
 ~~~
+
+### Ordinary Least Squares (OLS)
+
+The most common method for estimating the coefficients of a linear regression model is **Ordinary Least Squares (OLS)**. It consists in determining the coefficients $\alpha$ and $\beta$ that minimize the sum of the squared **residuals**, so-called **Residual Sum of Squares (RSS)**:
+
+$$
+RSS = \sum_{i=1}^{n}(Y_i - \hat{Y}_i)^2
+$$
 
 
 
