@@ -52,8 +52,11 @@ plt.figure(figsize=(15,10))
 sns.scatterplot(data = df,
             x = 'distance',
             y = 'time',
-            size = {'color':'navy', 'alpha':0.9, 's':220})
+            color = 'navy',
+            alpha = 0.9,
+            s = 220)
 
+plt.title('Plot 1: Basic scatter plot', fontsize=28)
 plt.xlabel('distance', fontsize=28)
 plt.ylabel('time', fontsize=28)
 plt.tick_params(axis='both', labelsize=24)
@@ -71,6 +74,7 @@ sns.regplot(data = df,
             scatter_kws = {'color':'navy', 'alpha':0.9, 's':220},
             line_kws = {'color':'gray', 'linewidth': 5})
 
+plt.title('Plot 2: Linear regression fit', fontsize=28)
 plt.xlabel('distance', fontsize=28)
 plt.ylabel('time', fontsize=28)
 plt.tick_params(axis='both', labelsize=24)
