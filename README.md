@@ -20,9 +20,39 @@ For this example, we apply a linear regression model to the relationship between
 
 Since it has only one explanatory variable (distance), the model is classified as a Simple Linear Regression.
 
-The dataset is stored in the *time_dist.csv* file, and the Python script for this example is *ex01_time_and_distance.py*.
+- Dataset: *time_dist.csv*
+- Python script: *ex01_time_and_distance.py*
 
-<img src="https://github.com/user-attachments/assets/888b6e53-30d0-4f75-b8f6-f2ad0f17cf1f" alt="Linear Regression Model Fit" widht="500" height="200">
+### Scatter Plot and Linear Regression
+
+The scatter plot in **Plot 1** provides a clear visualization of the data distribution. The points follow a linear trend, suggesting that a linear regression model could effectively capture the relationship between the variables, as demonstrated in **Plot 2**.
+
+<img src="https://github.com/user-attachments/assets/c7e87abb-2450-493e-a162-86eab47c5c85" alt = "Time_dist Scatter plot" width="300" height="200">
+
+<img src="https://github.com/user-attachments/assets/1f4aa500-d350-4126-b779-5362787c940b" alt="Linear Regression Model Fit" widht="500" height="200">
+<br><br>
+
+~~~python
+# Plot 1: Basic scatter plot
+
+plt.figure(figsize=(15,10))
+sns.scatterplot(data = df, x = 'distance', y = 'time', color = 'navy', alpha = 0.9, s = 220)
+plt.xlabel('distance', fontsize=28)
+plt.ylabel('time', fontsize=28)
+plt.tick_params(axis='both', labelsize=24)
+plt.show()
+
+# Plot 2: Scatter plot with linear regression fit
+
+plt.figure(figsize=(15,10))
+sns.regplot(data = df, x = 'distance', y = 'time', marker = 'o', ci = False,
+            scatter_kws = {'color':'navy', 'alpha':0.9, 's':220},
+            line_kws = {'color':'gray', 'linewidth': 5})
+plt.xlabel('distance', fontsize=28)
+plt.ylabel('time', fontsize=28)
+plt.tick_params(axis='both', labelsize=24)
+plt.show()
+~~~
 
 
 
