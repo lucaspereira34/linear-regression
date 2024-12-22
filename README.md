@@ -26,7 +26,21 @@ Since it has only one explanatory variable (distance), the model is classified a
 ~~~python
 # Read dataset
 df = pd.read_csv('time_dist.csv', delimiter=',')
+
+# Characteristics
+df.info()
+
+# Statistics
+df.describe()
 ~~~
+
+There are 2 columns with 10 observations:
+
+<img src="https://github.com/user-attachments/assets/6ea9057a-62ce-4c29-874b-5d7d2d023672" alt = "Dataset info">
+<br>
+<img src="https://github.com/user-attachments/assets/206b7c02-5894-4b34-a3b4-20e3edf42b30" alt ="Dataset statistics">
+
+
 
 ### Scatter Plot and Linear Regression
 
@@ -70,4 +84,10 @@ The mathematical properties of the OLS method are:
 - The sum of the residuals equals zero: $\sum_{i=1}^{n}e_i=0$
 - Residual Sum of Squares is minimized: $\min_{\alpha,\beta} \sum_{i=1}^{n}(Y_i - \hat{Y}_i)^2$
 
+The *OLS.from_formula* function from *statsmodels.api* library returns a regression model instance.
+
+~~~python
+# Estimation of the model
+model = sm.OLS.from_formula('time ~ distance', df).fit()
+~~~
 
