@@ -36,7 +36,7 @@ import webbrowser
 
 #%% Load dataset
 
-# Read to dataframe
+# Read dataset
 df = pd.read_csv('time_dist.csv', delimiter=',')
 
 # Characteristics
@@ -128,16 +128,25 @@ fig.update_layout(
 
 fig.write_html('EXAMPLE01.html')
 
-# Abrir o arquivo HTML no navegador
+# Open HTML file on bronwser
 webbrowser.open('EXAMPLE01.html')
 
 #%% Estimação do modelo de regressão linear simples
 
-# Estimação do modelo
-model = sm.OLS.from_formula('time ~ distance', df).fit()
+# Estimation of the model
+model = sm.OLS.from_formula('time ~ distance', df)
+results = model.fit()
 
-# Observação dos parâmetros resultantes da estimação
-model.summary()
+# Summary of the regression results
+results.summary()
+
+#%% Model coefficients 
+
+intercept = results.params['Intercept']
+slope = results.params['distance']
+
+print('Intercept: ', intercept.round(2))
+print('Slope: ', slope.round(2))
 
 #%% Store fitted values and residuals
 
@@ -168,3 +177,5 @@ for i in range(len(x)-1):
     plt.legend(['Fitted Values', 'Y_fitted - Y_average', 'Residual = Y - Y_fitted'],
                fontsize=22, loc='upper left')
 plt.show()
+
+
