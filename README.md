@@ -4,15 +4,22 @@
 
 # Simple Linear Regression
 
-Models the relationship between a single **explanatory variable** (X) and a **dependent variable** (Y).
+Models the relationship between a single **explanatory variable** and a **dependent variable**.
 
 $$
 Y = \alpha + \beta.X + \mu
 $$
 
-- $\alpha$ is the **intercept** coefficient. It is the starting point of the regression line on the Y-axis when X is zero.
-- $\beta$ is the **slope** coefficient. It represents the steepness and direction of the line.
-- $\mu$ is the **residual** term. Also called error, it is the difference between observed values ($Y$) and predicted values ($\hat{Y}$).
+$$
+\hat{Y} = \alpha + \beta.X
+$$
+
+- Y represents the **observed values** of the **dependent variable**.
+- X is the **explanatory variable**.
+- $\hat{Y}$ represents the **predicted values** of the **dependent variable**, also called **fitted values**.
+- $\alpha$ is the **intercept** coefficient. It is the point where the regression line intersects the Y-axis when X equals zero.
+- $\beta$ is the **slope** coefficient. It represents the steepness and direction of the regression line.
+- $\mu$ is the **residual** term, also called error term. It is the difference between the observed values ($Y$) and the predicted values ($\hat{Y}$).
 
 ## Example: Time and Distance
 
@@ -36,9 +43,9 @@ df.describe()
 
 There are 2 columns with 10 observations:
 
-<img src="https://github.com/user-attachments/assets/6ea9057a-62ce-4c29-874b-5d7d2d023672" alt = "Dataset info">
+<img src="https://github.com/user-attachments/assets/6ea9057a-62ce-4c29-874b-5d7d2d023672" alt = "Dataset info" width="300" height="90">
 <br>
-<img src="https://github.com/user-attachments/assets/206b7c02-5894-4b34-a3b4-20e3edf42b30" alt ="Dataset statistics">
+<img src="https://github.com/user-attachments/assets/206b7c02-5894-4b34-a3b4-20e3edf42b30" alt ="Dataset statistics" width="200" height="150">
 
 
 
@@ -84,10 +91,37 @@ The mathematical properties of the OLS method are:
 - The sum of the residuals equals zero: $\sum_{i=1}^{n}e_i=0$
 - Residual Sum of Squares is minimized: $\min_{\alpha,\beta} \sum_{i=1}^{n}(Y_i - \hat{Y}_i)^2$
 
-The *OLS.from_formula* function from *statsmodels.api* library returns a regression model instance.
+The *OLS.from_formula* method from the *statsmodels.api* library returns a regression model instance. The *fit()* method is then used to fit the model and return the a results instance.
 
 ~~~python
 # Estimation of the model
-model = sm.OLS.from_formula('time ~ distance', df).fit()
+model = sm.OLS.from_formula('time ~ distance', df)
+results = model.fit()
 ~~~
+
+The results are summarized using the *.summary()* method.
+
+~~~python
+results.summary()
+~~~
+
+<img src=https://github.com/user-attachments/assets/195241d7-4aa7-4399-b81e-c35dd842c0a1 alt="Simple Regression Results" width="570" height="400">
+
+### OLS Model
+
+The coefficients of the model can be obtained from the *results* instance:
+
+~~~python
+intercept = results.params['Intercept']
+slope = results.params['distance']
+~~~
+
+Applying these coefficients to the formula, the fitted values can be obtained by:
+
+$$
+\hat{Y} = 5.88 + 1.42.X
+$$
+
+
+
 
