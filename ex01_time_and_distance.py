@@ -150,8 +150,8 @@ print('Slope: ', slope.round(2))
 
 #%% Store fitted values and residuals
 
-df['y_fitted'] = model.fittedvalues
-df['y_resid'] = model.resid
+df['y_fitted'] = results.fittedvalues
+df['y_resid'] = results.resid
 
 #%% Plotting the concept of R²
 
