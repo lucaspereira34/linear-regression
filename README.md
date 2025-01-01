@@ -7,18 +7,19 @@
 Models the relationship between a single **explanatory variable** and a **dependent variable**.
 
 $$
-Y = \alpha + \beta.X + \mu
-$$
-
-$$
 \hat{Y} = \alpha + \beta.X
 $$
 
-- Y represents the **observed values** of the **dependent variable**.
-- X is the **explanatory variable**.
 - $\hat{Y}$ represents the **predicted values** of the **dependent variable**, also called **fitted values**.
 - $\alpha$ is the **intercept** coefficient. It is the point where the regression line intersects the Y-axis when X equals zero.
 - $\beta$ is the **slope** coefficient. It represents the steepness and direction of the regression line.
+- X is the **explanatory variable**.
+
+$$
+Y = \alpha + \beta.X + \mu
+$$
+
+- Y represents the **observed values** of the **dependent variable**.
 - $\mu$ is the **residual** term, also called error term. It is the difference between the observed values ($Y$) and the predicted values ($\hat{Y}$).
 
 ## Example: Time and Distance
@@ -91,7 +92,7 @@ The mathematical properties of the OLS method are:
 - The sum of the residuals equals zero: $\sum_{i=1}^{n}e_i=0$
 - Residual Sum of Squares is minimized: $\min_{\alpha,\beta} \sum_{i=1}^{n}(Y_i - \hat{Y}_i)^2$
 
-The *OLS.from_formula* method from the *statsmodels.api* library returns a regression model instance. The *fit()* method is then used to fit the model and return the a results instance.
+The *OLS.from_formula* method from the *statsmodels.api* library returns a regression model instance. The *.fit()* method is then used to fit the model and return the *results* instance.
 
 ~~~python
 # Estimation of the model
@@ -109,18 +110,32 @@ results.summary()
 
 ### OLS Model
 
-The coefficients of the model can be obtained from the *results* instance:
+The coefficients of the model can be obtained from the *results* instance using the *.params* attribute:
 
 ~~~python
 intercept = results.params['Intercept']
 slope = results.params['distance']
 ~~~
 
-Applying these coefficients to the formula, the fitted values can be obtained by:
+Applying these coefficients to the formula, the fitted model can be expressed by:
 
 $$
 \hat{Y} = 5.88 + 1.42.X
 $$
+
+And the residuals by:
+
+$$
+\mu = Y - \hat{Y}
+$$
+
+The fitted values and the residuals can be directly retrieved from the *results* instance using the attributes *.fittedvalues* and *.resid*, respectively.
+
+~~~python
+#%% Store fitted values and residuals
+df['y_fitted'] = results.fittedvalues
+df['y_resid'] = results.resid
+~~~
 
 
 
