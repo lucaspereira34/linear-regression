@@ -132,7 +132,7 @@ $$
 The fitted values and the residuals can be directly retrieved from the *results* instance using the attributes *.fittedvalues* and *.resid*, respectively.
 
 ~~~python
-#%% Store fitted values and residuals
+# Store fitted values and residuals
 df['y_fitted'] = results.fittedvalues
 df['y_resid'] = results.resid
 ~~~
