@@ -108,7 +108,7 @@ results.summary()
 
 <img src=https://github.com/user-attachments/assets/195241d7-4aa7-4399-b81e-c35dd842c0a1 alt="Simple Regression Results" width="570" height="400">
 
-### OLS Model
+### Coefficients, Fitted Values and Residuals
 
 The coefficients of the model can be obtained from the *results* instance using the *.params* attribute:
 
@@ -137,6 +137,20 @@ df['y_fitted'] = results.fittedvalues
 df['y_resid'] = results.resid
 ~~~
 
+### Goodness of Fit
 
+The **godness of fit** indicates the percentage of variance in the **dependant variable** Y that is explained by the joint variation of the **explanatory variables** X. It ranges from 0 to 1, and **the higher the coefficient, the greater the predictive power of the regression model**.
 
+It is commonly measured using the **R-Squared ($R^2$)** formula.
+
+$$
+R^2 = 1 - \frac{RSS}{TSS}
+$$
+
+- RSS &rarr; [Residual Sum of Squares](#ordinary-least-squares-(ols))
+- TSS &rarr; **Total Sum of Squares**: The sum of the squared differences between the observed values $Y_i$ and the mean of the observed values $\bar{Y}$
+
+$$
+TSS = \sum{(Y_i - \bar{Y})^2}
+$$
 
