@@ -79,7 +79,7 @@ plt.tick_params(axis='both', labelsize=24)
 plt.show()
 ~~~
 
-### Ordinary Least Squares (OLS)
+### Simple OLS Regression
 
 The most common method for estimating the coefficients of a linear regression model is **Ordinary Least Squares (OLS)**. It consists in determining the coefficients $\alpha$ and $\beta$ that **minimize** the sum of the squared **residuals**, so-called **Residual Sum of Squares (RSS)**:
 
@@ -147,7 +147,7 @@ $$
 R^2 = 1 - \frac{RSS}{TSS}
 $$
 
-- RSS &rarr; [Residual Sum of Squares](#ordinary-least-squares-(ols))
+- RSS &rarr; [Residual Sum of Squares](#simple-ols-regression)
 - TSS &rarr; **Total Sum of Squares**: The sum of the squared differences between the observed values $Y_i$ and the mean of the observed values $\bar{Y}$
 
 $$
