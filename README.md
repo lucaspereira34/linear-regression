@@ -20,7 +20,7 @@ Y = \alpha + \beta.X + \mu
 $$
 
 - Y represents the **observed values** of the **dependent variable**.
-- $\mu$ is the **residual** term, also called error term. It is the difference between the observed values ($Y$) and the predicted values ($\hat{Y}$).
+- $\mu$ is the **residual** term, also called error term. It is the difference between the observed values $Y$ and the predicted values $\hat{Y}$.
 
 ## Example: Time and Distance
 
@@ -89,8 +89,17 @@ $$
 
 The mathematical properties of the OLS method are:
 
-- The sum of the residuals equals zero: $\sum_{i=1}^{n}e_i=0$
-- Residual Sum of Squares is minimized: $\min_{\alpha,\beta} \sum_{i=1}^{n}(Y_i - \hat{Y}_i)^2$
+- The sum of the residuals equals zero:
+
+$$
+\sum_{i=1}^{n}e_i=0
+$$
+
+- Residual Sum of Squares is minimized:
+
+$$
+\min_{\alpha,\beta} \sum_{i=1}^{n}(Y_i - \hat{Y}_i)^2
+$$
 
 The *OLS.from_formula* method from the *statsmodels.api* library returns a regression model instance. The *.fit()* method is then used to fit the model and return the *results* instance.
 
@@ -153,4 +162,10 @@ $$
 $$
 TSS = \sum{(Y_i - \bar{Y})^2}
 $$
+
+Although the R-Squared can be calculated through its formula, it can also be directly obtained from the *results* instance using the *.rsquared* attribute.
+
+~~~python
+r_2 = results.rsquared
+~~~
 
