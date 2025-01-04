@@ -124,7 +124,13 @@ The coefficients of the model can be obtained from the *results* instance using 
 ~~~python
 intercept = results.params['Intercept']
 slope = results.params['distance']
+
+print('Intercept: ', intercept.round(2))
+print('Slope: ', slope.round(2))
 ~~~
+
+<img src="https://github.com/user-attachments/assets/ef3bfc74-1a5b-41e6-9a15-aa3787dc9b2c" alt="Print coefficients" width="140" height="40">
+
 
 Applying these coefficients to the formula, the fitted model can be expressed by:
 
@@ -167,5 +173,39 @@ Although the R-Squared can be calculated through its formula, it can also be dir
 
 ~~~python
 r_2 = results.rsquared
+print('R²: ', r_2.round(4))
+~~~
+
+<img src="https://github.com/user-attachments/assets/6dcb1ba1-0915-4d5f-9aa5-e0ff09a873d3" alt="Print r2" width="100" height="20">
+
+**Plot 3** shows the graphical representation of **RSS** with green dotted lines, and **TSS** with purple dashed lines.
+
+<img src="https://github.com/user-attachments/assets/7021cab5-84a5-4e32-94b3-2b5409a00949" alt="Plot R-squared concept" width="400" height="300">
+<br><br>
+
+~~~python
+# Plot 3: Concept of R²
+plt.figure(figsize=(15,10))
+y = df['time']
+yhat = df['y_fitted']
+x = df['distance']
+mean = np.full(x.shape[0] , y.mean(), dtype=int)
+
+for i in range(len(x)-1):
+    plt.plot(x, yhat, color='grey', linewidth=7)
+    plt.plot([x[i], x[i]], [yhat[i], mean[i]], '--', color='darkorchid', linewidth=5)
+    plt.plot([x[i], x[i]], [yhat[i], y[i]],':', color='limegreen', linewidth=5)
+    plt.scatter(x, y, color='navy', s=220, alpha=0.2)
+    plt.axhline(y = y.mean(), color = 'silver', line style = '-', linewidth=4)
+    plt.title('R²: ' + str(round(results.rsquared, 4)), fontsize=30)
+    plt.xlabel('Distance', fontsize=24)
+    plt.ylabel('Time', fontsize=24)
+    plt.xticks(fontsize=18) 
+    plt.yticks(fontsize=18)
+    plt.xlim(0, 35)
+    plt.ylim(0, 60)
+    plt.legend(['Fitted Values', 'Y_fitted - Y_average', 'Residual = Y - Y_fitted'],
+               fontsize=22, loc='upper left')
+plt.show()
 ~~~
 
