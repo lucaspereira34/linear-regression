@@ -168,6 +168,17 @@ for i in range(len(x)-1):
                fontsize=22, loc='upper left')
 plt.show()
 
+#%% Confidence interval
+
+# 10% significance level / 90% confidence level
+results.conf_int(alpha=0.1)
+
+# 5% significance level / 95% confidence level
+results.conf_int(alpha=0.05)
+
+# 1% significance level / 99% confidence level
+results.conf_int(alpha=0.01)
+
 #%% Confidence interval plots
 
 def plot_ci(df, ci, plot):
@@ -189,4 +200,3 @@ def plot_ci(df, ci, plot):
 plot_ci(df, 90, 'Plot 4') # Plot 4
 plot_ci(df, 95, 'Plot 5') # Plot 5
 plot_ci(df, 99, 'Plot 6') # Plot 6
-plot_ci(df, 99.9999, 'Plot 7') # Plot 7
