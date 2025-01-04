@@ -1,18 +1,3 @@
-# In[0.1]: Instalação dos pacotes
-
-!pip install pandas
-!pip install numpy
-!pip install -U seaborn
-!pip install matplotlib
-!pip install plotly
-!pip install scipy
-!pip install statsmodels
-!pip install scikit-learn
-!pip install playsound
-!pip install pingouin
-!pip install emojis
-!pip install statstests
-
 #%% Import
 
 import pandas as pd # data wrangling
@@ -153,7 +138,12 @@ print('Slope: ', slope.round(2))
 df['y_fitted'] = results.fittedvalues
 df['y_resid'] = results.resid
 
-#%% Plotting the concept of R²
+#%% Goodness of fit R²
+
+r_2 = results.rsquared
+print('R²: ', r_2.round(4))
+
+#%% Plot 3: Concept of R²
 
 plt.figure(figsize=(15,10))
 y = df['time']
@@ -163,19 +153,40 @@ mean = np.full(x.shape[0] , y.mean(), dtype=int)
 
 for i in range(len(x)-1):
     plt.plot(x, yhat, color='grey', linewidth=7)
-    plt.plot([x[i], x[i]], [yhat[i], mean[i]], '--', color='darkorchid', linewidth=5)
     plt.plot([x[i], x[i]], [yhat[i], y[i]],':', color='limegreen', linewidth=5)
+    plt.plot([x[i], x[i]], [yhat[i], mean[i]], '--', color='darkorchid', linewidth=5)
     plt.scatter(x, y, color='navy', s=220, alpha=0.2)
     plt.axhline(y = y.mean(), color = 'silver', linestyle = '-', linewidth=4)
-    plt.title('R²: ' + str(round(model.rsquared, 4)), fontsize=30)
+    plt.title('Plot 3: R² = ' + str(round(results.rsquared, 4)), fontsize=30)
+    plt.xlabel('Distance', fontsize=24)
+    plt.ylabel('Time', fontsize=24)
+    plt.xticks(fontsize=18) 
+    plt.yticks(fontsize=18)
+    plt.xlim(0, 35)
+    plt.ylim(0, 60)
+    plt.legend(['Fitted Values', 'Residual = Y - Y_fitted', 'Y_fitted - Y_average'],
+               fontsize=22, loc='upper left')
+plt.show()
+
+#%% Confidence interval plots
+
+def plot_ci(df, ci, plot):
+    plt.figure(figsize=(15,10))
+    sns.regplot(data=df, x='distance', y='time', marker='o', ci=ci,
+                scatter_kws={"color":'navy', 'alpha':0.7, 's':220},
+                line_kws={"color":'grey', 'linewidth': 5})
+    plt.title(plot + ': CI ' + str(ci) + '%', fontsize=30)
     plt.xlabel('Distance', fontsize=24)
     plt.ylabel('Time', fontsize=24)
     plt.xticks(fontsize=18)
     plt.yticks(fontsize=18)
     plt.xlim(0, 35)
     plt.ylim(0, 60)
-    plt.legend(['Fitted Values', 'Y_fitted - Y_average', 'Residual = Y - Y_fitted'],
-               fontsize=22, loc='upper left')
-plt.show()
-
-
+    plt.legend(['Observed Values', 'Fitted Values', 'CI ' + str(ci) + '%'],
+               fontsize=24, loc='upper left')
+    plt.show
+    
+plot_ci(df, 90, 'Plot 4') # Plot 4
+plot_ci(df, 95, 'Plot 5') # Plot 5
+plot_ci(df, 99, 'Plot 6') # Plot 6
+plot_ci(df, 99.9999, 'Plot 7') # Plot 7
