@@ -119,7 +119,7 @@ results.summary()
 
 ### Coefficients, Fitted Values and Residuals
 
-The coefficients of the model can be obtained from the *results* instance using the *.params* attribute:
+The coefficients of the model can be obtained from the *results* instance, either through the *.summary()* output or by using the *.params* attribute:
 
 ~~~python
 intercept = results.params['Intercept']
@@ -169,7 +169,7 @@ $$
 TSS = \sum{(Y_i - \bar{Y})^2}
 $$
 
-Although the R-Squared can be calculated through its formula, it can also be directly obtained from the *results* instance using the *.rsquared* attribute.
+Although the R-Squared can be calculated through its formula, it can also be directly obtained from the *results* instance through the *.summary()* output or the *.rsquared* attribute.
 
 ~~~python
 r_2 = results.rsquared
@@ -209,3 +209,46 @@ for i in range(len(x)-1):
 plt.show()
 ~~~
 
+### Confidence Interval
+
+Confidence intervals (CI) provide a range of plausible values for the **coefficients** with a given **confidence level**. For example, a 95% CI means that in a scenario where we repeatedly sample and estimate the model, 95% of the resulting confidence intervals would contain the **true population coefficients**, based on Student's t-distribution. 
+
+The *.summary()* method contains the 95% confidence intervals for the intercept and slopes. Specific intervals can be retrieved using the *.conf_int()* method, which uses the **significance level**.
+
+- **Significance level** = 1 - **confidence level**.
+
+~~~python
+# 10% significance level / 90% confidence level
+results.conf_int(alpha=0.1)
+
+# 5% significance level / 95% confidence level
+results.conf_int(alpha=0.05)
+
+# 1% significance level / 99% confidence level
+results.conf_int(alpha=0.01)
+~~~
+
+**Plots 4, 5, and 6** illustrate the confidence intervals in a simple regression fit. 
+
+~~~python
+# Confidence interval plots
+def plot_ci(df, ci, plot):
+    plt.figure(figsize=(15,10))
+    sns.regplot(data=df, x='distance', y='time', marker='o', ci=ci,
+                scatter_kws={"color":'navy', 'alpha':0.7, 's':220},
+                line_kws={"color":'grey', 'linewidth': 5})
+    plt.title(plot + ': CI ' + str(ci) + '%', fontsize=30)
+    plt.xlabel('Distance', fontsize=24)
+    plt.ylabel('Time', fontsize=24)
+    plt.xticks(fontsize=18)
+    plt.yticks(fontsize=18)
+    plt.xlim(0, 35)
+    plt.ylim(0, 60)
+    plt.legend(['Observed Values', 'Fitted Values', 'CI ' + str(ci) + '%'],
+               fontsize=24, loc='upper left')
+    plt.show
+    
+plot_ci(df, 90, 'Plot 4') # Plot 4
+plot_ci(df, 95, 'Plot 5') # Plot 5
+plot_ci(df, 99, 'Plot 6') # Plot 6
+~~~
