@@ -262,10 +262,12 @@ On the other hand, predictions made outside the observed range of the explanator
 This means that predictions made within the range of 5 km and 32 km fall into the **Interpolation** zone and are, therefore, more reliable. The model can be used to predict values for new distances within this range. While it's possible to manually calculate predictions using the estimated coefficients, it's more efficient to use the *.predict()* method.
 
 ~~~python
+# How long would it take for a student to walk 21 km?
+
 # Manual calculation using the estimated parameters
-results.params[0] + results.params[1] * (20)
+results.params[0] + results.params[1] * (21)
 
 # Using a pandas.DataFrame inside the .predict() method
-results.predict(pd.DataFrame({'distance':[20]}))
+results.predict(pd.DataFrame({'distance':[21]}))
 ~~~
 
