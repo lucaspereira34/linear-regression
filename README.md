@@ -213,7 +213,7 @@ plt.show()
 
 Confidence intervals (CI) provide a range of plausible values for the **coefficients** with a given **confidence level**. For example, a 95% CI means that in a scenario where we repeatedly sample and estimate the model, 95% of the resulting confidence intervals would contain the **true population coefficients**, based on Student's t-distribution. 
 
-The *.summary()* method contains the 95% confidence intervals for the intercept and slopes. Specific intervals can be retrieved using the *.conf_int()* method, which uses the **significance level**.
+The *.summary()* method includes the 95% confidence intervals for the intercept and slopes. Specific intervals can be retrieved using the *.conf_int()* method, which uses the **significance level**.
 
 - **Significance level** = 1 - **confidence level**.
 
@@ -252,3 +252,20 @@ plot_ci(df, 90, 'Plot 4') # Plot 4
 plot_ci(df, 95, 'Plot 5') # Plot 5
 plot_ci(df, 99, 'Plot 6') # Plot 6
 ~~~
+
+### Predictions
+
+As shown in the output of *df.describe()*, the dataset used to train the model has a minimum distance value of 5 km and a maximum value of 32 km. Predictions made within the range of the explanatory variables observed during model training are referred to as **Interpolation**. It's a reliable zone, where predictions are usually more trustworthy.
+
+On the other hand, predictions made outside the observed range of the explanatory variables are referred to as **Extrapolation**. These predictions might lead to unreliable outcomes, because the model assumes that the same linear relationship holds beyond the observed data, which might not always be true.
+
+This means that predictions made within the range of 5 km and 32 km fall into the **Interpolation** zone and are, therefore, more reliable. The model can be used to predict values for new distances within this range. While it's possible to manually calculate predictions using the estimated coefficients, it's more efficient to use the *.predict()* method.
+
+~~~python
+# Manual calculation using the estimated parameters
+results.params[0] + results.params[1] * (20)
+
+# Using a pandas.DataFrame inside the .predict() method
+results.predict(pd.DataFrame({'distance':[20]}))
+~~~
+
