@@ -200,3 +200,11 @@ def plot_ci(df, ci, plot):
 plot_ci(df, 90, 'Plot 4') # Plot 4
 plot_ci(df, 95, 'Plot 5') # Plot 5
 plot_ci(df, 99, 'Plot 6') # Plot 6
+
+#%% Making predictions: How long would it take for a student to walk 21 km?
+
+# Manual calculation using the estimated parameters
+results.params[0] + results.params[1] * (21)
+
+# Using a pandas.DataFrame inside the .predict() method
+results.predict(pd.DataFrame({'distance':[21]}))
