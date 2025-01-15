@@ -180,7 +180,7 @@ print('R²: ', r_2.round(4))
 
 **Plot 3** shows the graphical representation of **RSS** with green dotted lines, and **TSS** with purple dashed lines.
 
-<img src="https://github.com/user-attachments/assets/7021cab5-84a5-4e32-94b3-2b5409a00949" alt="Plot R-squared concept" width="400" height="300">
+<img src="https://github.com/user-attachments/assets/7f5b42e5-cd54-4a82-94fa-cc37721972cd" alt="Plot R-squared concept" width="400" height="300">
 <br><br>
 
 ~~~python
@@ -229,6 +229,13 @@ results.conf_int(alpha=0.01)
 ~~~
 
 **Plots 4, 5, and 6** illustrate the confidence intervals in a simple regression fit. 
+
+<img src="https://github.com/user-attachments/assets/361f3bda-209c-42fa-b803-f3df21cddd65" alt="CI 90" width="300" height="200">
+
+<img src="https://github.com/user-attachments/assets/d415a3a1-097c-4aae-875a-f2e5e25676e1" alt="CI 95" width="300" height="200">
+
+<img src="https://github.com/user-attachments/assets/c6cd676b-ec8b-45e3-bb96-a6840e22c4ba" alt="CI 95" width="300" height="200">
+<br><br>
 
 ~~~python
 # Confidence interval plots
